@@ -1,0 +1,65 @@
+{% extends 'groups/group_base.html' %}
+<div class="scroll">
+
+    {% block pregroup %}
+        <div class="night">
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+            <div class="star"></div>
+        </div>
+        <div class="col-md-4">
+
+            <div class="row flex-lg-row-reverse align-items-center g-5 py-5 ">
+
+                {% if user.is_authenticated %}
+                    <h1>Good to see you again! {{ user.username |title }}
+                    </h1>
+                {% endif %}
+                <h1>Welcome to the groups page!</h1>
+
+            </div>
+            {% if user.is_authenticated %}
+                <a href="{% url 'groups:create' %}" class="btn btn-md btn-fill btn-warning">
+                    <span class="glyphicon glyphicon-plus-sign">Create New Group!</span>
+                </a>
+            {% endif %}
+        </div>
+    {% endblock %}
+
+    {% block group_content %}
+
+        <div class="col-md-8">
+
+            <div class="list-group">
+                {% for group in object_list %}
+                    <a class="list-group-item" href="{% url 'groups:single' slug=group.slug %}">
+                        <h3 class="title list-group-item-heading">{{ group.name }}</h3>
+                        <div class="list-group-item-text container-fluid">
+                            {{ group.description_html|safe }}
+                            <div class="row">
+                                {% if group.members.count == 1 %}
+                                    <div class="col-md-4">
+                                        <span class="badge bg-dark">{{ group.members.count }}</span>
+                                        member
+                                    </div>
+                                {% else %}
+                                    <div class="col-md-4">
+                                        <span class="badge bg-dark">{{ group.members.count }}</span>
+                                        members
+                                    </div>
+                                {% endif %}
+
+                                <div class="col-md-4">
+                                    posts: {{ group.posts.count }}
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+
+    {% endblock %}
+</div>

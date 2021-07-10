@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load django_bootstrap5 %}
+{% block content %}
+    <div class="container">
+        <form method="POST" class="loginform">
+                    <h1 class="centers">Register</h1>
+
+            {% csrf_token %}
+
+            {% bootstrap_form form %}
+            <button value="Register" type="submit" class="btn btn-primary">Register</button>
+                    <a class="center btn  btn-secondary" href="{% url 'login page' %}">Already have an account ?</a>
+
+        </form>
+    </div>
+{% endblock %}

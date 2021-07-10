@@ -1,0 +1,11 @@
+{% extends 'groups/group_base.html' %}
+{% load django_bootstrap5 %}
+
+{% block group_content %}
+    <form action="{% url 'groups:create' %}" method="POST" id="groupForm" class="loginform">
+        <h1 class="centers">Create a new group</h1>
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" class="btn btn-primary btn-large" value="Create">
+    </form>
+{% endblock %}

@@ -1,6 +1,62 @@
-{% extends 'base.html' %}
+{% load static %}
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>SS</title>
+    <!-- Latest compiled and minified CSS -->
 
-{% block content %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="http://simpleicon.com/wp-content/uploads/star.png">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+            integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+            crossorigin="anonymous"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'socialstar/css/master.css' %}">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container ">
+        <a class="navbar-brand" href="{% url 'home' %}">Social Star</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <ul class="navbar-nav">
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'posts:create' %}">Post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'groups:all' %}">Groups</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'groups:create' %}">Create Group</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Log Out</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'groups:all' %}">Groups</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'login page' %}">Log in</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'register page' %}">Register</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
     <div class="scene hidden">
         <div class="ufoWrap">
             <div class='center'>
@@ -216,24 +272,13 @@
 
     <div class="camera">
 
-{#        <div class="rec">#}
-{#      <span><span></span><svg class="blinky" xmlns="http://www.w3.org/2000/svg" width="16" height="16"#}
-{#                              fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">#}
-{#  <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z"/>#}
-{#</svg></span>#}
-{#        </div><!-- end div.rec -->#}
+
         <div class="meta">
-{#            <p>F2.3&nbsp;&nbsp;0dB&nbsp;&nbsp;15.7V#}
-{#                <span class="exposure">#}
-{#          <span class="plus">+</span>#}
-{#          <span class="minus">-</span>#}
-{#        </span>#}
+
             </p>
         </div><!-- end div.meta -->
         <div class="timer">
-{#            <label id="hours">00</label>:#}
-{#            <label id="minutes">00</label>:#}
-{#            <label id="seconds">00</label>#}
+
         </div><!-- end div.timer -->
     </div><!-- end div.camera -->
 
@@ -244,17 +289,8 @@
 
             <div class="col-10 col-sm-8 col-lg-6">
 
-{#                <img src="cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;ixid=MnwzNzg0fDB8MXxzZWFyY2h8MTB8fHdlYnNpdGV8ZW58MHwwfHx8MTYyMTQ0NjkyNg&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1080&amp;h=768"#}
-{#                     class="d-block mx-lg-auto img-fluid" alt="" loading="lazy">#}
             </div>
             <div class="col-lg-6">
-{#                <div class="night">#}
-{#                    <div class="star"></div>#}
-{#                    <div class="star"></div>#}
-{#                    <div class="star"></div>#}
-{#                    <div class="star"></div>#}
-{#                    <div class="star"></div>#}
-{#                </div>#}
                 <div class="p p-1"></div>
                 <div class="p p-2"></div>
                 <div class="p p-3"></div>
@@ -284,34 +320,6 @@
             </div>
         </div>
     </div>
-{% endblock %}
-<div class="container col-xxl-8 px-4 py-5">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-        <div class="col-10 col-sm-8 col-lg-6">
-            <img src="https://images.unsplash.com/photo-1530435460869-d13625c69bbf?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;ixid=MnwzNzg0fDB8MXxzZWFyY2h8MTB8fHdlYnNpdGV8ZW58MHwwfHx8MTYyMTQ0NjkyNg&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1080&amp;h=768"
-                 class="d-block mx-lg-auto img-fluid" alt="" loading="lazy">
-        </div>
-        <div class="col-lg-6">
-            <div class="lc-block mb-3">
-                <div editable="rich">
-                    <h2 class="fw-bold display-5">Responsive left-aligned hero with image</h2>
-                </div>
-            </div>
-
-            <div class="lc-block mb-3">
-                <div editable="rich">
-                    <p class="lead">Quickly design and customize responsive mobile-first sites with Bootstrap, the
-                        world’s most popular front-end open source toolkit, featuring Sass variables and mixins,
-                        responsive grid system, extensive prebuilt components, and powerful JavaScript plugins.
-                    </p>
-                </div>
-            </div>
-
-            <div class="lc-block d-grid gap-2 d-md-flex justify-content-md-start"><a
-                    class="btn btn-primary px-4 me-md-2" href="#" role="button">Click me, I'm a button</a>
-                <a class="btn btn-outline-secondary px-4" href="#" role="button">Click me, I'm a button</a>
-            </div>
-
-        </div>
-    </div>
-</div>
+</body>
+<script type="text/javascript" src="{% static 'socialstar/js/master.js' %}"></script>
+</html>

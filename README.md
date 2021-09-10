@@ -4,8 +4,9 @@
 ## Technologies used:
 1. Python,
 2.  Javascript
-3.   HTML
-4.    CSS
-5.    Bootstrap
+3.  Django
+4.   HTML
+5.    CSS
+6.    Bootstrap
 
 ### website link: https://arifrasim1.pythonanywhere.com/
